@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:icons_plus/icons_plus.dart';
 
 class User {
   String _username;
@@ -253,7 +252,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      const Icon(HeroIcons.play),
+                                      const Icon(Icons.play_circle),
                                       Text(
                                         isAllTimeSelected
                                             ? '${users[index].alltimeLectureCompletion}'
@@ -266,7 +265,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      const Icon(HeroIcons.fire),
+                                      const Icon(Icons.local_fire_department),
                                       Text(
                                         isAllTimeSelected
                                             ? '${users[index].alltimeStreak}'

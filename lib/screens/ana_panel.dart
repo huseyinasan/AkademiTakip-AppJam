@@ -1,7 +1,6 @@
 import 'package:appjam/screens/leaderbord.dart';
 import 'package:appjam/screens/profil.dart';
 import 'package:flutter/material.dart';
-import 'package:icons_plus/icons_plus.dart';
 
 class AnaPanel extends StatefulWidget {
   const AnaPanel({super.key});
@@ -14,9 +13,7 @@ class AnaPanel extends StatefulWidget {
 //
 class _AnaPanelState extends State<AnaPanel> {
   bool showMonthlyProgress = true;
-  void onProgressBarPressed(String label) {
-    print('$label progress bar pressed');
-  }
+  void onProgressBarPressed(String label) {}
 
   final List<Map<String, dynamic>> totalProgressData = [
     {
@@ -101,11 +98,7 @@ class _AnaPanelState extends State<AnaPanel> {
             children: const [
               Padding(
                 padding: EdgeInsets.only(left: 12),
-                child: Icon(
-                  HeroIcons.fire,
-                  size: 30,
-                  color: Colors.orange,
-                ),
+                child: Text("🔥"),
               ),
               Text(
                 'x5',
