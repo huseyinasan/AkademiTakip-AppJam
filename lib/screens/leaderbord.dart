@@ -86,16 +86,6 @@ class User {
     for (var user in users) {
       print('${user.username}: ${user.aylikPuan}');
     }
-//   void sortUsersByaylikPuan(User birey) {
-//     birey.sort((a, b) => b.aylikPuan.compareTo(a.aylikPuan));
-//   }
-//
-//   void sort(Function(dynamic a, dynamic b) param0) {}
-// //
-// void sortAlg(User birey){
-//   birey.alltimePuan= 2*birey._alltimeLectureCompletion+ 3*birey._alltimeStreak+ 11*birey._alltimeSocial;
-//
-// }
   }
 }
 
@@ -146,6 +136,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
 
   // users.sort((a, b) => b.alltimepuanAlgorithm.compareTo(a.aylikPuan));
   bool isAllTimeSelected = false;
+
   void sortUsersByAylikPuan(List<User> users) {
     users.sort((a, b) => b.aylikPuan.compareTo(a.aylikPuan));
   }
@@ -156,118 +147,202 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
 
   @override
   Widget build(BuildContext context) {
+    int cemreIndex = users.indexWhere((user) => user.username == "Cemre İ.");
+    GlobalKey cemreKey = GlobalKey();
+    ScrollController _scrollController = ScrollController();
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Liderlik Tablosu'),
+        title: const Text('🏆 Liderlik Tablosu 🏆'),
+        centerTitle: true,
       ),
-      body: Column(
+      body: Stack(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          Column(
             children: [
-              Text(
-                'Aylık',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'Aylık',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                  Switch(
+                    value: isAllTimeSelected,
+                    onChanged: (value) {
+                      value
+                          ? sortUsersByAylikPuan(users)
+                          : sortUsersByAlltimePuan(users);
+                      setState(() {
+                        isAllTimeSelected = value;
+                      });
+                    },
+                    activeColor: Colors.blue,
+                    inactiveThumbColor: Colors.blue,
+                    activeTrackColor: Colors.red,
+                    inactiveTrackColor: Colors.green,
+                  ),
+                  const Text(
+                    'Tüm Zamanlar',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                ],
               ),
-              Switch(
-                value: isAllTimeSelected,
-                onChanged: (value) {
-                  value
-                      ? sortUsersByAylikPuan(users)
-                      : sortUsersByAlltimePuan(users);
-                  setState(() {
-                    isAllTimeSelected = value;
-                  });
-                },
-                activeColor: Colors.blue,
-                inactiveThumbColor: Colors.blue,
-                activeTrackColor: Colors.red,
-                inactiveTrackColor: Colors.green,
+              const Divider(
+                color: Colors.grey,
+                thickness: 4,
               ),
-              Text(
-                'Tüm Zamanlar',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              const SizedBox(height: 16.0),
+              Expanded(
+                child: ListView.builder(
+                  controller: _scrollController,
+                  itemCount: users.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Container(
+                      key: index == cemreIndex ? cemreKey : null,
+                      margin: const EdgeInsets.symmetric(
+                          vertical: 8, horizontal: 16),
+                      child: Material(
+                        elevation: 10,
+                        borderRadius: BorderRadius.circular(8),
+                        child: ExpansionTile(
+                          tilePadding: const EdgeInsets.all(16),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8)),
+                          backgroundColor: index % 2 == 0
+                              ? Colors.white
+                              : Colors.grey.shade200,
+                          leading: CircleAvatar(
+                            backgroundColor: Colors.blue,
+                            foregroundColor: Colors.white,
+                            child: Text(users[index].username[0].toUpperCase()),
+                          ),
+                          title: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                users[index].username,
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              Row(
+                                children: [
+                                  const Icon(
+                                    Icons.star,
+                                    color: Colors.amber,
+                                  ),
+                                  const SizedBox(width: 4.0),
+                                  Text(
+                                    isAllTimeSelected
+                                        ? '${users[index].alltimePuan}'
+                                        : '${users[index].aylikPuan}',
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          children: [
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 16.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      const Icon(HeroIcons.play),
+                                      Text(
+                                        isAllTimeSelected
+                                            ? '${users[index].alltimeLectureCompletion}'
+                                            : '${users[index].aylikLectureCompletion}',
+                                      ),
+                                      const Text('Ders Tamamlama'),
+                                    ],
+                                  ),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      const Icon(HeroIcons.fire),
+                                      Text(
+                                        isAllTimeSelected
+                                            ? '${users[index].alltimeStreak}'
+                                            : '${users[index].aylikStreak}',
+                                      ),
+                                      const Text('Seriler'),
+                                    ],
+                                  ),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      const Icon(Icons.people),
+                                      Text(
+                                        isAllTimeSelected
+                                            ? '${users[index].alltimeSocial}'
+                                            : '${users[index].aylikStreak}',
+                                      ),
+                                      const Text('Topluluk Etkileşimi'),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                ),
               ),
             ],
           ),
-          SizedBox(height: 16.0),
-          Expanded(
-            child: ListView.builder(
-              itemCount: users.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Container(
-                  margin:
-                      const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                  child: Material(
-                    elevation: 4,
-                    borderRadius: BorderRadius.circular(8),
-                    child: ListTile(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8)),
-                      tileColor:
-                          index % 2 == 0 ? Colors.white : Colors.grey.shade200,
-                      leading: CircleAvatar(
-                        child: Text(users[index].username[0].toUpperCase()),
-                        backgroundColor: Colors.blue,
-                        foregroundColor: Colors.white,
-                      ),
-                      title: Text(
-                        users[index].username,
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      subtitle: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Icon(HeroIcons.play),
-                              Text(
-                                isAllTimeSelected
-                                    ? '${users[index].alltimeLectureCompletion}'
-                                    : '${users[index].aylikLectureCompletion}',
-                              ),
-                            ],
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Icon(Icons.local_fire_department_outlined),
-                              Text(
-                                isAllTimeSelected
-                                    ? '${users[index].alltimeStreak}'
-                                    : '${users[index].aylikStreak}',
-                              ),
-                            ],
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Icon(Icons.people),
-                              Text(
-                                isAllTimeSelected
-                                    ? '${users[index].alltimeSocial}'
-                                    : '${users[index].aylikStreak}',
-                              ),
-                            ],
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Icon(Icons.star),
-                              Text(
-                                isAllTimeSelected
-                                    ? '${users[index].alltimePuan}'
-                                    : '${users[index].aylikPuan}',
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
+          Positioned(
+            bottom: 16,
+            left: 0,
+            right: 0,
+            child: Container(
+              padding: const EdgeInsets.all(16),
+              margin: const EdgeInsets.symmetric(horizontal: 16),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                color: Colors.blue,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  CircleAvatar(
+                    backgroundColor: Colors.white,
+                    foregroundColor: Colors.blue,
+                    child: Text(Huseyin.username[0].toUpperCase()),
+                  ),
+                  Text(
+                    Huseyin.username,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
                     ),
                   ),
-                );
-              },
+                  Row(
+                    children: [
+                      const Icon(
+                        Icons.star,
+                        color: Colors.amber,
+                      ),
+                      const SizedBox(width: 4.0),
+                      Text(
+                        isAllTimeSelected
+                            ? '${Huseyin.alltimePuan}'
+                            : '${Huseyin.aylikPuan}',
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ],
@@ -275,356 +350,3 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
     );
   }
 }
-
-
-// @override
-// Widget build(BuildContext context) {
-//   return Scaffold(
-//     appBar: AppBar(
-//       title: Text('Leaderboard'),
-//     ),
-//     body: Center(
-//       child: Align(
-//         child: ElevatedButton(
-//           child: Text('Giriş Yap'),
-//           onPressed: () {
-//             //////// UNUTMA
-//           },
-//         ),
-//
-//       ),
-//     ),
-//   );
-// }
-
-// @override
-// Widget build(BuildContext context) {
-//   return CupertinoPageScaffold(
-//     backgroundColor: config.Colors().secondColor(1),
-//     child: Stack(
-//       alignment: Alignment.center,
-//       children: <Widget>[
-//         SafeArea(
-//           child: local
-//               ? CustomScrollView(
-//             slivers: <Widget>[
-//               SliverFixedExtentList(
-//                   delegate:
-//                   SliverChildListDelegate.fixed([Container()]),
-//                   itemExtent:
-//                   MediaQuery.of(context).size.height * 0.23),
-//               SliverToBoxAdapter(
-//                 child: SectionHeader(
-//                   text: 'Google Leaderboard',
-//                   onPressed: () {},
-//                 ),
-//               ),
-//               SliverToBoxAdapter(
-//                 child: Stack(
-//                   children: <Widget>[
-//                     Container(
-//                       width: MediaQuery.of(context).size.width,
-//                       height: 240,
-//                       child: ListView.builder(
-//                         physics: NeverScrollableScrollPhysics(),
-//                         itemCount: 3,
-//                         itemBuilder: (context, index) {
-//                           return Padding(
-//                             padding: const EdgeInsets.symmetric(
-//                                 vertical: 8.0, horizontal: 14),
-//                             child: CardWidget(
-//                               gradient: false,
-//                               button: false,
-//                               child: Row(
-//                                 children: <Widget>[
-//                                   Padding(
-//                                     padding: const EdgeInsets.all(8.0),
-//                                     child: Text(
-//                                       "${index + 1}.",
-//                                       style: TextStyle(
-//                                           fontFamily: 'Red Hat Display',
-//                                           fontSize: 18,
-//                                           color: Color(0xFF585858)),
-//                                     ),
-//                                   ),
-//                                   Padding(
-//                                     padding: const EdgeInsets.all(8.0),
-//                                     child: Text(
-//                                       "${names[index]}",
-//                                       style: TextStyle(
-//                                           fontFamily: 'Red Hat Display',
-//                                           fontSize: 18,
-//                                           color: Color(0xFF585858)),
-//                                     ),
-//                                   ),
-//                                   Spacer(),
-//                                   Container(
-//                                     width: MediaQuery.of(context)
-//                                         .size
-//                                         .width *
-//                                         0.3,
-//                                     decoration: BoxDecoration(
-//                                         borderRadius: BorderRadius.only(
-//                                             topLeft: Radius.elliptical(
-//                                                 10, 50),
-//                                             bottomLeft:
-//                                             Radius.elliptical(
-//                                                 10, 50)),
-//                                         gradient: LinearGradient(
-//                                             colors: [
-//                                               material.Colors.white,
-//                                               colors[index]
-//                                             ],
-//                                             begin: Alignment.topLeft,
-//                                             end:
-//                                             Alignment.bottomRight)),
-//                                     child: Padding(
-//                                       padding:
-//                                       const EdgeInsets.all(8.0),
-//                                       child: Row(
-//                                         mainAxisAlignment:
-//                                         MainAxisAlignment
-//                                             .spaceEvenly,
-//                                         children: <Widget>[
-//                                           Image.asset(
-//                                             'assets/images/CoinSmall.png',
-//                                             width: 50,
-//                                           ),
-//                                           Text(
-//                                             "${coins[index]}",
-//                                             style: TextStyle(
-//                                                 fontFamily:
-//                                                 'Red Hat Display',
-//                                                 fontSize: 18,
-//                                                 color:
-//                                                 Color(0xFF585858)),
-//                                           ),
-//                                         ],
-//                                       ),
-//                                     ),
-//                                   )
-//                                 ],
-//                               ),
-//                               height: 60,
-//                             ),
-//                           );
-//                         },
-//                       ),
-//                     ),
-//                     Positioned(
-//                         top: -5,
-//                         left: -4,
-//                         child: Image.asset('assets/images/crown.png'))
-//                   ],
-//                 ),
-//               ),
-//               SliverToBoxAdapter(
-//                 child: SectionHeader(
-//                   text: 'My Statistics',
-//                   onPressed: () {},
-//                 ),
-//               ),
-//               SliverToBoxAdapter(
-//                 child: Container(
-//                   width: MediaQuery.of(context).size.width,
-//                   height: 245,
-//                   child: StatsCard(),
-//                 ),
-//               ),
-//             ],
-//           )
-//               : CustomScrollView(
-//             slivers: <Widget>[
-//               SliverFixedExtentList(
-//                   delegate:
-//                   SliverChildListDelegate.fixed([Container()]),
-//                   itemExtent:
-//                   MediaQuery.of(context).size.height * 0.23),
-//               SliverToBoxAdapter(
-//                 child: SectionHeader(
-//                   text: 'Leaderboard',
-//                   onPressed: () {},
-//                 ),
-//               ),
-//               SliverToBoxAdapter(
-//                 child: Stack(
-//                   children: <Widget>[
-//                     Container(
-//                       width: MediaQuery.of(context).size.width,
-//                       height: MediaQuery.of(context).size.height,
-//                       child: ListView.builder(
-//                         physics: NeverScrollableScrollPhysics(),
-//                         itemCount: 10,
-//                         itemBuilder: (context, index) {
-//                           return Padding(
-//                             padding: const EdgeInsets.symmetric(
-//                                 vertical: 8.0, horizontal: 14),
-//                             child: CardWidget(
-//                               gradient: false,
-//                               button: false,
-//                               child: Row(
-//                                 children: <Widget>[
-//                                   Padding(
-//                                     padding: const EdgeInsets.all(8.0),
-//                                     child: Text(
-//                                       "${index + 1}.",
-//                                       style: TextStyle(
-//                                           fontFamily: 'Red Hat Display',
-//                                           fontSize: 18,
-//                                           color: Color(0xFF585858)),
-//                                     ),
-//                                   ),
-//                                   Padding(
-//                                     padding: const EdgeInsets.all(8.0),
-//                                     child: Text(
-//                                       "${names[index]}",
-//                                       style: TextStyle(
-//                                           fontFamily: 'Red Hat Display',
-//                                           fontSize: 18,
-//                                           color: Color(0xFF585858)),
-//                                     ),
-//                                   ),
-//                                   Spacer(),
-//                                   Container(
-//                                     width: MediaQuery.of(context)
-//                                         .size
-//                                         .width *
-//                                         0.3,
-//                                     decoration: BoxDecoration(
-//                                         borderRadius: BorderRadius.only(
-//                                             topLeft: Radius.elliptical(
-//                                                 10, 50),
-//                                             bottomLeft:
-//                                             Radius.elliptical(
-//                                                 10, 50)),
-//                                         gradient: LinearGradient(
-//                                             colors: [
-//                                               material.Colors.white,
-//                                               colors[index]
-//                                             ],
-//                                             begin: Alignment.topLeft,
-//                                             end:
-//                                             Alignment.bottomRight)),
-//                                     child: Padding(
-//                                       padding:
-//                                       const EdgeInsets.all(8.0),
-//                                       child: Row(
-//                                         mainAxisAlignment:
-//                                         MainAxisAlignment
-//                                             .spaceEvenly,
-//                                         children: <Widget>[
-//                                           Image.asset(
-//                                             'assets/images/CoinSmall.png',
-//                                             width: 50,
-//                                           ),
-//                                           Text(
-//                                             "${coins[index]}",
-//                                             style: TextStyle(
-//                                                 fontFamily:
-//                                                 'Red Hat Display',
-//                                                 fontSize: 18,
-//                                                 color:
-//                                                 Color(0xFF585858)),
-//                                           ),
-//                                         ],
-//                                       ),
-//                                     ),
-//                                   )
-//                                 ],
-//                               ),
-//                               height: 60,
-//                             ),
-//                           );
-//                         },
-//                       ),
-//                     ),
-//                     Positioned(
-//                         top: -5,
-//                         left: -4,
-//                         child: Image.asset('assets/images/crown.png'))
-//                   ],
-//                 ),
-//               ),
-//             ],
-//           ),
-//         ),
-//         Positioned(
-//           top: 0,
-//           child: Stack(
-//             alignment: Alignment.center,
-//             children: <Widget>[
-//               Column(
-//                 children: <Widget>[
-//                   TopBar(
-//                     controller: controller,
-//                     expanded: false,
-//                     onMenuTap: widget.onMenuTap,
-//                   ),
-//                   Container(
-//                     width: MediaQuery.of(context).size.width,
-//                     height: MediaQuery.of(context).size.height * 0.07,
-//                     color: material.Colors.white,
-//                     child: Row(
-//                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//                         children: [
-//                           CupertinoButton(
-//                             onPressed: () {
-//                               setState(() {
-//                                 local = true;
-//                               });
-//                             },
-//                             child: Text(
-//                               "Local",
-//                               style: TextStyle(
-//                                   color: Color(0xFF343434),
-//                                   fontSize: 20,
-//                                   fontFamily: 'Red Hat Display',
-//                                   fontWeight: material.FontWeight.w600),
-//                             ),
-//                           ),
-//                           CupertinoButton(
-//                             onPressed: () {
-//                               setState(() {
-//                                 local = false;
-//                               });
-//                             },
-//                             child: Text(
-//                               "Global",
-//                               style: TextStyle(
-//                                   color: Color(0xFF343434),
-//                                   fontSize: 20,
-//                                   fontFamily: 'Red Hat Display',
-//                                   fontWeight: material.FontWeight.w600),
-//                             ),
-//                           )
-//                         ]),
-//                   )
-//                 ],
-//               ),
-//               Positioned(
-//                 bottom: 0,
-//                 left: 0,
-//                 child: AnimatedContainer(
-//                   margin: local
-//                       ? EdgeInsets.only(
-//                       left: MediaQuery.of(context).size.width * 0.33 - 35)
-//                       : EdgeInsets.only(
-//                       left:
-//                       MediaQuery.of(context).size.width * 0.67 - 10),
-//                   width: 40,
-//                   height: 4,
-//                   duration: Duration(milliseconds: 300),
-//                   decoration: BoxDecoration(
-//                       color: Color(0xFF03A9F4),
-//                       borderRadius: BorderRadius.circular(500)),
-//                 ),
-//               )
-//             ],
-//           ),
-//         )
-//       ],
-//     ),
-//   );
-// }
-// }
-
