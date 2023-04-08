@@ -1,5 +1,3 @@
-import 'package:flutter/animation.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'ana_panel.dart';
@@ -38,13 +36,15 @@ class _AnimationPageState extends State<AnimationPage>
 
     _animationController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 120), // Set duration to 0.2 seconds
+      duration:
+          const Duration(milliseconds: 120), // Set duration to 0.2 seconds
     );
 
-    _animation = Tween<double>(begin: 0.5, end: 1).animate(_animationController);
+    _animation =
+        Tween<double>(begin: 0.5, end: 1).animate(_animationController);
 
     _animationController.forward().whenComplete(() {
-      Future.delayed(Duration(milliseconds: 120), () {
+      Future.delayed(const Duration(milliseconds: 120), () {
         _animateImages();
       });
     });
@@ -63,14 +63,14 @@ class _AnimationPageState extends State<AnimationPage>
           _currentIndex++;
         });
         _animationController.forward().whenComplete(() {
-          Future.delayed(Duration(milliseconds: 120), () {
+          Future.delayed(const Duration(milliseconds: 120), () {
             _animateImages();
           });
         });
       });
     } else {
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => LoginPage()),
+        MaterialPageRoute(builder: (context) => const LoginPage()),
       );
     }
   }
@@ -93,6 +93,8 @@ class _AnimationPageState extends State<AnimationPage>
 }
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }
@@ -108,13 +110,13 @@ class _LoginPageState extends State<LoginPage> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 5,
-        shape: ContinuousRectangleBorder(
+        shape: const ContinuousRectangleBorder(
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(30),
             bottomRight: Radius.circular(30),
           ),
         ),
-        title: Text(
+        title: const Text(
           'Oyun ve Uygulama Akademisi',
           style: TextStyle(color: Colors.black),
         ),
@@ -122,7 +124,7 @@ class _LoginPageState extends State<LoginPage> {
       body: Center(
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
             child: Form(
               key: _formKey,
               child: Column(
@@ -131,21 +133,18 @@ class _LoginPageState extends State<LoginPage> {
                   PhysicalModel(
                     elevation: 10,
                     color: Colors.white,
-                    borderRadius: BorderRadius.all(
+                    borderRadius: const BorderRadius.all(
                       Radius.circular(10),
                     ),
-
-                    child: Container(
-                      child: Image.asset(
-                        'assets/oualogo.png',
-                        width: 150,
-                        height: 150,
-                      ),
+                    child: Image.asset(
+                      'assets/oualogo.png',
+                      width: 150,
+                      height: 150,
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   TextFormField(
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Kullanıcı Adı',
                     ),
                     validator: (value) {
@@ -158,9 +157,9 @@ class _LoginPageState extends State<LoginPage> {
                       _username = value ?? '';
                     },
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   TextFormField(
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Şifre',
                     ),
                     obscureText: true,
@@ -175,7 +174,7 @@ class _LoginPageState extends State<LoginPage> {
                     },
                   ),
                   ElevatedButton(
-                    child: SizedBox(
+                    child: const SizedBox(
                       width: double.infinity,
                       child: Text(
                         'Giriş Yap',
@@ -190,7 +189,7 @@ class _LoginPageState extends State<LoginPage> {
                           _navigatePanel(context);
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
+                            const SnackBar(
                               content: Text('Kullanıcı adı veya şifre hatalı'),
                             ),
                           );
@@ -198,12 +197,12 @@ class _LoginPageState extends State<LoginPage> {
                       }
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.red,
+                      backgroundColor: Colors.red,
                     ),
                   ),
-                  SizedBox(height: 8.0),
+                  const SizedBox(height: 8.0),
                   TextButton(
-                    child: Text(
+                    child: const Text(
                       'Şifrenizi mi unuttunuz?',
                       style: TextStyle(
                         decoration: TextDecoration.underline,
@@ -218,12 +217,13 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
-  }}
+  }
+}
 
 void _navigatePanel(BuildContext context) {
   Navigator.of(context).pushReplacement(MaterialPageRoute(
     builder: (context) {
-      return AnaPanel();
+      return const AnaPanel();
     },
   ));
 }
