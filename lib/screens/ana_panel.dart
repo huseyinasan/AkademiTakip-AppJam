@@ -10,7 +10,7 @@ class AnaPanel extends StatefulWidget {
   // ignore: library_private_types_in_public_api
   _AnaPanelState createState() => _AnaPanelState();
 }
-
+//
 class _AnaPanelState extends State<AnaPanel> {
   bool showMonthlyProgress = true;
   void onProgressBarPressed(String label) {
@@ -119,6 +119,7 @@ class _AnaPanelState extends State<AnaPanel> {
         ),
         leading: const SizedBox(),
         actions: [
+
           Container(
             padding: const EdgeInsets.only(right: 20),
             child: IconButton(
