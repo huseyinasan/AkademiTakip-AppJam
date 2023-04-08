@@ -23,24 +23,28 @@ class _AnaPanelState extends State<AnaPanel> {
       'value': 0.72,
       'color': Colors.blue,
       "course": "14/21",
+      "kalan_sure": 740,
     },
     {
       'name': 'Google Proje Yönetimi',
       'value': 0.83,
       'color': Colors.green,
       "course": "5/6",
+      "kalan_sure": 160,
     },
     {
       'name': 'Girişimcilik',
       'value': 0.84,
       'color': Colors.yellow,
       "course": "16/21",
+      "kalan_sure": 90,
     },
     {
       'name': 'İngilizce',
       'value': 0.77,
       'color': Colors.red,
       "course": "27/34",
+      "kalan_sure": 360,
     },
   ];
 
@@ -50,24 +54,28 @@ class _AnaPanelState extends State<AnaPanel> {
       'value': 0.82,
       'color': Colors.blue,
       "course": "14/16",
+      "kalan_sure": 60,
     },
     {
       'name': 'Google Proje Yönetimi',
       'value': 1.0,
       'color': Colors.green,
       "course": "5/4",
+      "kalan_sure": 0,
     },
     {
       'name': 'Girişimcilik',
       'value': 0.72,
       'color': Colors.yellow,
       "course": "16/18",
+      "kalan_sure": 40,
     },
     {
       'name': 'İngilizce',
       'value': 0.92,
       'color': Colors.red,
       "course": "27/28",
+      "kalan_sure": 25,
     },
   ];
 
@@ -161,7 +169,7 @@ class _AnaPanelState extends State<AnaPanel> {
                 ),
               ),
               child: const Text(
-                'İlerleme Düzeylerin',
+                'İlerleme Düzeyleri',
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -177,12 +185,13 @@ class _AnaPanelState extends State<AnaPanel> {
               itemBuilder: (BuildContext context, int index) {
                 return Column(
                   children: [
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     CustomProgressBar(
                       label: progressData[index]['name'],
                       value: progressData[index]['value'],
                       color: progressData[index]['color'],
                       course: progressData[index]["course"],
+                      kalan_sure: progressData[index]["kalan_sure"],
                       onPressed: () =>
                           onProgressBarPressed(progressData[index]['name']),
                     ),
@@ -218,6 +227,7 @@ class CustomProgressBar extends StatefulWidget {
   final double value;
   final Color color;
   final String course;
+  final int kalan_sure;
   final VoidCallback? onPressed;
 
   const CustomProgressBar({
@@ -226,6 +236,7 @@ class CustomProgressBar extends StatefulWidget {
     required this.value,
     required this.color,
     required this.course,
+    required this.kalan_sure,
     this.onPressed,
   }) : super(key: key);
 
@@ -315,12 +326,23 @@ class _CustomProgressBarState extends State<CustomProgressBar> {
           // Add any content that you want to display when the widget is expanded
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
-            child: Text(
-              'Modül İlerlemesi: ${widget.course}',
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
+            child: Column(
+              children: [
+                Text(
+                  'Modül İlerlemesi: ${widget.course}',
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  'Kalan Ders Süre: ${widget.kalan_sure} dakika',
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
             ),
           ),
         ],
