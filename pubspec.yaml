@@ -95,9 +95,9 @@ flutter:
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
   assets:
-    - assets/logo.png
-    - assets/logo52.png
-    - assets/logo3.png
-    - assets/logo4.png
-    - assets/logo5.png
-    - assets/logo6.png
+    - assets/oualogo.png
+    - assets/girisimvakfi.png
+    - assets/sanayib.png
+    - assets/dijitaldonusum.png
+    - assets/t3.png
+    - assets/google.png
