@@ -1,16 +1,93 @@
-import 'package:appjam/screens/ana_panel.dart';
+import 'package:flutter/animation.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
-void main() {
-  runApp(MyApp());
-}
+import 'ana_panel.dart';
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: LoginPage(),
+      home: AnimationPage(),
+    );
+  }
+}
+
+class AnimationPage extends StatefulWidget {
+  @override
+  _AnimationPageState createState() => _AnimationPageState();
+}
+
+class _AnimationPageState extends State<AnimationPage>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _animationController;
+  late Animation<double> _animation;
+  int _currentIndex = 0;
+
+  List<String> imageList = [
+    'assets/t3.png',
+    'assets/sanayib.png',
+    'assets/google.png',
+    'assets/girisimvakfi.png',
+    'assets/dijitaldonusum.png'
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+
+    _animationController = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 120), // Set duration to 0.2 seconds
+    );
+
+    _animation = Tween<double>(begin: 0.5, end: 1).animate(_animationController);
+
+    _animationController.forward().whenComplete(() {
+      Future.delayed(Duration(milliseconds: 120), () {
+        _animateImages();
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  void _animateImages() {
+    if (_currentIndex < imageList.length - 1) {
+      _animationController.reverse().whenComplete(() {
+        setState(() {
+          _currentIndex++;
+        });
+        _animationController.forward().whenComplete(() {
+          Future.delayed(Duration(milliseconds: 120), () {
+            _animateImages();
+          });
+        });
+      });
+    } else {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => LoginPage()),
+      );
+    }
+  }
+
+  Widget _buildImage() {
+    return FadeTransition(
+      opacity: _animation,
+      child: Image.asset(imageList[_currentIndex]),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: _buildImage(),
+      ),
     );
   }
 }
@@ -25,7 +102,6 @@ class _LoginPageState extends State<LoginPage> {
 
   String _username = 'a';
   String _password = 'a';
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,13 +131,13 @@ class _LoginPageState extends State<LoginPage> {
                   PhysicalModel(
                     elevation: 10,
                     color: Colors.white,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(10),
-                      ),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(10),
+                    ),
 
                     child: Container(
                       child: Image.asset(
-                        'assets/logo.png',
+                        'assets/oualogo.png',
                         width: 150,
                         height: 150,
                       ),
@@ -145,7 +221,7 @@ class _LoginPageState extends State<LoginPage> {
   }}
 
 void _navigatePanel(BuildContext context) {
-  Navigator.of(context).push(MaterialPageRoute(
+  Navigator.of(context).pushReplacement(MaterialPageRoute(
     builder: (context) {
       return AnaPanel();
     },
