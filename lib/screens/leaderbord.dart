@@ -1,46 +1,48 @@
 import 'package:flutter/material.dart';
+import 'package:icons_plus/icons_plus.dart';
+
 
 class User {
   String _username;
-  int _weeklyLectureCompletion;
-  int _weeklyStreak;
-  int _weeklySocial;
+  int _aylikLectureCompletion;
+  int _aylikStreak;
+  int _aylikSocial;
   int _alltimeLectureCompletion;
   int _alltimeStreak;
   int _alltimeSocial;
-  late int _weeklyPuan;
+  late int _aylikPuan;
   late int _alltimePuan;
 
   User(this._username,
-      this._weeklyLectureCompletion,
-      this._weeklyStreak,
-      this._weeklySocial,
+      this._aylikLectureCompletion,
+      this._aylikStreak,
+      this._aylikSocial,
       this._alltimeLectureCompletion,
       this._alltimeStreak,
       this._alltimeSocial,
-      this._weeklyPuan,
+      this._aylikPuan,
       this._alltimePuan);
 
-  User.initialize(this._username, this._weeklyLectureCompletion,
-      this._weeklyStreak, this._weeklySocial, this._alltimeLectureCompletion,
+  User.initialize(this._username, this._aylikLectureCompletion,
+      this._aylikStreak, this._aylikSocial, this._alltimeLectureCompletion,
       this._alltimeStreak, this._alltimeSocial);
 
   String get username => _username;
 
   set username(String username) => _username = username;
 
-  int get weeklyLectureCompletion => _weeklyLectureCompletion;
+  int get aylikLectureCompletion => _aylikLectureCompletion;
 
-  set weeklyLectureCompletion(int weeklyLectureCompletion) =>
-      _weeklyLectureCompletion = weeklyLectureCompletion;
+  set aylikLectureCompletion(int aylikLectureCompletion) =>
+      _aylikLectureCompletion = aylikLectureCompletion;
 
-  int get weeklyStreak => _weeklyStreak;
+  int get aylikStreak => _aylikStreak;
 
-  set weeklyStreak(int weeklyStreak) => _weeklyStreak = weeklyStreak;
+  set aylikStreak(int aylikStreak) => _aylikStreak = aylikStreak;
 
-  int get weeklySocial => _weeklySocial;
+  int get aylikSocial => _aylikSocial;
 
-  set weeklySocial(int weeklySocial) => _weeklySocial = weeklySocial;
+  set aylikSocial(int aylikSocial) => _aylikSocial = aylikSocial;
 
   int get alltimeLectureCompletion => _alltimeLectureCompletion;
 
@@ -55,32 +57,32 @@ class User {
 
   set alltimeSocial(int alltimeSocial) => _alltimeSocial = alltimeSocial;
 
-  int get weeklyPuan => _weeklyPuan;
+  int get aylikPuan => _aylikPuan;
 
-  set weeklyPuan(int weeklyPuan) => _weeklyPuan = weeklyPuan;
+  set aylikPuan(int aylikPuan) => _aylikPuan = aylikPuan;
 
   int get alltimePuan => _alltimePuan;
 
   set alltimePuan(int alltimePuan) => _alltimePuan = alltimePuan;
 
-  void weeklypuanAlgorithm(User birey) {
-    birey.weeklyPuan =
-        3 * birey.weeklyLectureCompletion + 2 * birey.weeklyStreak +
-            10 * birey.weeklySocial;
+  void aylikpuanAlgorithm(User birey) {
+    birey.aylikPuan =
+        3 * birey.aylikLectureCompletion + 2 * birey.aylikStreak +
+            10 * birey.aylikSocial;
   }
 
   void alltimepuanAlgorithm(User birey) {
     birey.alltimePuan =
         2 * birey.alltimeLectureCompletion + 3 * birey.alltimeStreak +
-            11 * birey.alltimeSocial;
+            10* birey.alltimeSocial;
   }
 
-  void printUserWeeklyPuan(List<User> users) {
+  void printUseraylikPuan(List<User> users) {
     for (var user in users) {
-      print('${user.username}: ${user.weeklyPuan}');
+      print('${user.username}: ${user.aylikPuan}');
     }
-//   void sortUsersByWeeklyPuan(User birey) {
-//     birey.sort((a, b) => b.weeklyPuan.compareTo(a.weeklyPuan));
+//   void sortUsersByaylikPuan(User birey) {
+//     birey.sort((a, b) => b.aylikPuan.compareTo(a.aylikPuan));
 //   }
 //
 //   void sort(Function(dynamic a, dynamic b) param0) {}
@@ -94,13 +96,18 @@ class User {
 }
 
 class LeaderboardPage extends StatefulWidget {
-
   @override
   State<LeaderboardPage> createState() => _LeaderboardPageState();
 }
-//ss
-//deneme
+
 class _LeaderboardPageState extends State<LeaderboardPage> {
+
+  @override
+  void initState() {
+    super.initState();
+    sortUsersByAylikPuan(users);}
+
+
   User Ahmet = User(
       "Ahmet",
       10,
@@ -111,6 +118,48 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
       70,
       150,
       1000);
+  User Ahmet1 = User(
+      "Ahmet1",
+      10,
+      5,
+      7,
+      100,
+      50,
+      70,
+      150,
+      1000);
+  User Ahmet2 = User(
+      "Ahmet2",
+      10,
+      5,
+      7,
+      100,
+      50,
+      70,
+      150,
+      1000);
+
+  User Ahmet3 = User(
+      "Ahmet3",
+      10,
+      5,
+      7,
+      100,
+      50,
+      70,
+      150,
+      1000);
+  User Ahmet4 = User(
+      "Ahmet4",
+      10,
+      5,
+      7,
+      100,
+      50,
+      70,
+      150,
+      1000);
+
 
   User Mehmet = User(
       "Mehmet",
@@ -178,49 +227,44 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
       300,
       2000);
 
-  late final List<User> users = [Ahmet, Mehmet, Ayse, Fatma, Ali, Veli, Mert];
+  late final List<User> users = [Ahmet, Mehmet, Ayse, Fatma, Ali, Veli, Mert,Ahmet1,Ahmet2,Ahmet3,Ahmet4];
 
-  // users.sort((a, b) => b.alltimepuanAlgorithm.compareTo(a.weeklyPuan));
-  bool isWeeklySelected = true;
+  // users.sort((a, b) => b.alltimepuanAlgorithm.compareTo(a.aylikPuan));
+  bool isAllTimeSelected = false;
+  void sortUsersByAylikPuan(List<User> users) {
+    users.sort((a, b) => b.aylikPuan.compareTo(a.aylikPuan));
+  }
+
+  void sortUsersByAlltimePuan(List<User> users) {
+    users.sort((a, b) => b.alltimePuan.compareTo(a.alltimePuan));
+  }
+@override
 
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Leaderboard'),
+        title: Text('Liderlik Tablosu'),
       ),
       body: Column(
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ElevatedButton(
-                onPressed: () {
+              Text('Haftalık'),
+              Switch(
+                value: isAllTimeSelected,
+                onChanged: (value) {
+                  value ? sortUsersByAylikPuan(users):sortUsersByAlltimePuan(users) ;
                   setState(() {
-                    isWeeklySelected = true;
+                    isAllTimeSelected = value;
                   });
                 },
-                child: Text('Weekly'),
-                style: ElevatedButton.styleFrom(
-                  primary: isWeeklySelected ? Colors.blue : null,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                ),
+                activeColor: Colors.blue,
+                inactiveThumbColor: Colors.blue,
+                activeTrackColor: Colors.red,
+                inactiveTrackColor: Colors.green,
               ),
-              ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    isWeeklySelected = false;
-                  });
-                },
-                child: Text('All Time'),
-                style: ElevatedButton.styleFrom(
-                  primary: isWeeklySelected ? null : Colors.blue,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                ),
-              ),
+              Text('Tüm Zamanlar'),
             ],
           ),
           SizedBox(height: 16.0),
@@ -233,36 +277,36 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                     title: Text(users[index].username),
                     subtitle: Row(
                       children: [
-                        Icon(Icons.check_circle),
+                        Icon(HeroIcons.play),
                         SizedBox(width: 8.0),
                         Text(
-                          isWeeklySelected
-                              ? '${users[index].weeklyLectureCompletion}'
-                              : '${users[index].alltimeLectureCompletion}',
+                          isAllTimeSelected
+                              ? '${users[index].alltimeLectureCompletion}'
+                              : '${users[index].aylikLectureCompletion}',
                         ),
                         SizedBox(width: 16.0),
                         Icon(Icons.local_fire_department_outlined),
                         SizedBox(width: 8.0),
                         Text(
-                          isWeeklySelected
-                              ? '${users[index].weeklyStreak}'
-                              : '${users[index].alltimeStreak}',
+                          isAllTimeSelected
+                              ? '${users[index].alltimeStreak}'
+                              : '${users[index].aylikStreak}',
                         ),
                         SizedBox(width: 16.0),
                         Icon(Icons.people),
                         SizedBox(width: 8.0),
                         Text(
-                          isWeeklySelected
-                              ? '${users[index].weeklySocial}'
-                              : '${users[index].alltimeSocial}',
+                          isAllTimeSelected
+                              ? '${users[index].alltimeSocial}'
+                              : '${users[index].aylikStreak}',
                         ),
                         SizedBox(width: 16.0),
                         Icon(Icons.star),
                         SizedBox(width: 8.0),
                         Text(
-                          isWeeklySelected
-                              ? '${users[index].weeklyPuan}'
-                              : '${users[index].alltimePuan}',
+                          isAllTimeSelected
+                              ? '${users[index].alltimePuan}'
+                              : '${users[index].aylikPuan}',
                         ),
                       ],
                     ),

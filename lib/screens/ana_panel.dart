@@ -10,7 +10,7 @@ class AnaPanel extends StatefulWidget {
   // ignore: library_private_types_in_public_api
   _AnaPanelState createState() => _AnaPanelState();
 }
-
+//
 class _AnaPanelState extends State<AnaPanel> {
   bool showMonthlyProgress = true;
   void onProgressBarPressed(String label) {
@@ -84,9 +84,14 @@ class _AnaPanelState extends State<AnaPanel> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final horizontalPadding = screenWidth * 0.05;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Görev Takibi'),
+        title: const Text(
+          'Görev Takibi',
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        ),
         centerTitle: true,
         flexibleSpace: FlexibleSpaceBar(
           centerTitle: true,
@@ -97,15 +102,14 @@ class _AnaPanelState extends State<AnaPanel> {
                 padding: EdgeInsets.only(left: 12),
                 child: Icon(
                   HeroIcons.fire,
-                  size: 32,
+                  size: 30,
                   color: Colors.orange,
                 ),
               ),
-              SizedBox(width: 8),
               Text(
                 'x5',
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 22,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),
@@ -115,6 +119,7 @@ class _AnaPanelState extends State<AnaPanel> {
         ),
         leading: const SizedBox(),
         actions: [
+
           Container(
             padding: const EdgeInsets.only(right: 20),
             child: IconButton(
@@ -158,17 +163,19 @@ class _AnaPanelState extends State<AnaPanel> {
             ],
           ),
           const SizedBox(height: 16),
-          Center(
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 111, vertical: 8),
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [Colors.blue.shade400, Colors.blue.shade700],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                ),
+          Container(
+            margin: EdgeInsets.zero,
+            padding: EdgeInsets.symmetric(
+                horizontal: horizontalPadding, vertical: 8),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [Colors.blue.shade400, Colors.blue.shade700],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
               ),
-              child: const Text(
+            ),
+            child: const Center(
+              child: Text(
                 'İlerleme Düzeyleri',
                 style: TextStyle(
                   fontSize: 24,
@@ -195,10 +202,28 @@ class _AnaPanelState extends State<AnaPanel> {
                       onPressed: () =>
                           onProgressBarPressed(progressData[index]['name']),
                     ),
+                    if (index < progressData.length - 1)
+                      const Divider(
+                        thickness: 2,
+                      ),
                   ],
                 );
               },
             ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(14.0),
+                child: FloatingActionButton(
+                  onPressed: () {
+                    _navigateLeaderbord(context);
+                  },
+                  child: Icon(Icons.leaderboard),
+                ),
+              ),
+            ],
           ),
         ],
       ),
@@ -281,31 +306,35 @@ class _CustomProgressBarState extends State<CustomProgressBar> {
               style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
+                decoration: TextDecoration.underline,
               ),
             ),
             const SizedBox(height: 8),
-            Stack(
-              children: [
-                Container(
-                  height: 16,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: Colors.grey.shade300,
+            LayoutBuilder(
+                builder: (BuildContext context, BoxConstraints constraints) {
+              return Stack(
+                children: [
+                  Container(
+                    height: 16,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: Colors.grey.shade300,
+                    ),
+                    width: constraints.maxWidth,
                   ),
-                  width: MediaQuery.of(context).size.width,
-                ),
-                Container(
-                  height: 16,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: _isPressed
-                        ? widget.color.withOpacity(0.6)
-                        : widget.color,
+                  Container(
+                    height: 16,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: _isPressed
+                          ? widget.color.withOpacity(0.6)
+                          : widget.color,
+                    ),
+                    width: constraints.maxWidth * widget.value,
                   ),
-                  width: MediaQuery.of(context).size.width * widget.value,
-                ),
-              ],
-            ),
+                ],
+              );
+            }),
             const SizedBox(height: 8),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -336,7 +365,7 @@ class _CustomProgressBarState extends State<CustomProgressBar> {
                   ),
                 ),
                 Text(
-                  'Kalan Ders Süre: ${widget.kalan_sure} dakika',
+                  'Kalan Ders Süresi: ${widget.kalan_sure} dakika',
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
