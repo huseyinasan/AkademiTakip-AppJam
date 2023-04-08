@@ -96,12 +96,18 @@ class User {
 }
 
 class LeaderboardPage extends StatefulWidget {
-
   @override
   State<LeaderboardPage> createState() => _LeaderboardPageState();
 }
 
 class _LeaderboardPageState extends State<LeaderboardPage> {
+
+  @override
+  void initState() {
+    super.initState();
+    sortUsersByAylikPuan(users);}
+
+
   User Ahmet = User(
       "Ahmet",
       10,
@@ -225,6 +231,14 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
 
   // users.sort((a, b) => b.alltimepuanAlgorithm.compareTo(a.aylikPuan));
   bool isAllTimeSelected = false;
+  void sortUsersByAylikPuan(List<User> users) {
+    users.sort((a, b) => b.aylikPuan.compareTo(a.aylikPuan));
+  }
+
+  void sortUsersByAlltimePuan(List<User> users) {
+    users.sort((a, b) => b.alltimePuan.compareTo(a.alltimePuan));
+  }
+@override
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -240,9 +254,9 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
               Switch(
                 value: isAllTimeSelected,
                 onChanged: (value) {
+                  value ? sortUsersByAylikPuan(users):sortUsersByAlltimePuan(users) ;
                   setState(() {
                     isAllTimeSelected = value;
-
                   });
                 },
                 activeColor: Colors.blue,
