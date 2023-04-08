@@ -98,8 +98,7 @@ class LeaderboardPage extends StatefulWidget {
   @override
   State<LeaderboardPage> createState() => _LeaderboardPageState();
 }
-//ss
-//deneme
+
 class _LeaderboardPageState extends State<LeaderboardPage> {
   User Ahmet = User(
       "Ahmet",
@@ -111,6 +110,48 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
       70,
       150,
       1000);
+  User Ahmet1 = User(
+      "Ahmet1",
+      10,
+      5,
+      7,
+      100,
+      50,
+      70,
+      150,
+      1000);
+  User Ahmet2 = User(
+      "Ahmet2",
+      10,
+      5,
+      7,
+      100,
+      50,
+      70,
+      150,
+      1000);
+
+  User Ahmet3 = User(
+      "Ahmet3",
+      10,
+      5,
+      7,
+      100,
+      50,
+      70,
+      150,
+      1000);
+  User Ahmet4 = User(
+      "Ahmet4",
+      10,
+      5,
+      7,
+      100,
+      50,
+      70,
+      150,
+      1000);
+
 
   User Mehmet = User(
       "Mehmet",
@@ -178,11 +219,11 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
       300,
       2000);
 
-  late final List<User> users = [Ahmet, Mehmet, Ayse, Fatma, Ali, Veli, Mert];
+  late final List<User> users = [Ahmet, Mehmet, Ayse, Fatma, Ali, Veli, Mert,Ahmet1,Ahmet2,Ahmet3,Ahmet4];
 
   // users.sort((a, b) => b.alltimepuanAlgorithm.compareTo(a.weeklyPuan));
   bool isWeeklySelected = true;
-
+@override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -191,7 +232,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
       body: Column(
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ElevatedButton(
                 onPressed: () {

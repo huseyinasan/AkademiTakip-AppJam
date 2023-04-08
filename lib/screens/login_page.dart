@@ -23,111 +23,126 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
 
-  String _username = 'kullaniciadi';
-  String _password = 'sifre';
+  String _username = 'a';
+  String _password = 'a';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.grey,
-        elevation: 0,
+        backgroundColor: Colors.white,
+        elevation: 5,
+        shape: ContinuousRectangleBorder(
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(30),
+            bottomRight: Radius.circular(30),
+          ),
+        ),
         title: Text(
           'Oyun ve Uygulama Akademisi',
           style: TextStyle(color: Colors.black),
         ),
       ),
       body: Center(
-        child: Padding(
-          padding: EdgeInsets.all(16.0),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  'assets/logo.png',
-                  width: 150,
-                  height: 150,
-                ),
-                SizedBox(height: 20),
-                TextFormField(
-                  decoration: InputDecoration(
-                    labelText: 'Kullanıcı Adı',
-                  ),
-                  validator: (value) {
-                    if (value?.isEmpty ?? true) {
-                      return 'Lütfen kullanıcı adınızı girin';
-                    }
-                    return null;
-                  },
-                  onSaved: (value) {
-                    _username = value ?? '';
-                  },
-                ),
-                SizedBox(height: 10),
-                TextFormField(
-                  decoration: InputDecoration(
-                    labelText: 'Şifre',
-                  ),
-                  obscureText: true,
-                  validator: (value) {
-                    if (value?.isEmpty ?? true) {
-                      return 'Lütfen şifrenizi girin';
-                    }
-                    return null;
-                  },
-                  onSaved: (value) {
-                    _password = value ?? '';
-                  },
-                ),
-                SizedBox(height: 16.0),
-                ElevatedButton(
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: Text(
-                      'Giriş Yap',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 20.0, color: Colors.white),
-                    ),
-                  ),
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      _formKey.currentState!.save();
-                      if (_username == 'kullaniciadi' && _password == 'sifre') {
-                        _navigatePanel(context);
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text('Kullanıcı adı veya şifre hatalı'),
-                          ),
-                        );
-                      }
-                    }
-                  },
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  PhysicalModel(
+                    elevation: 10,
+                    color: Colors.white,
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(10),
+                      ),
 
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.red,
-                  ),
-                ),
-                SizedBox(height: 8.0),
-                TextButton(
-                  child: Text(
-                    'Şifrenizi mi unuttunuz?',
-                    style: TextStyle(
-                      decoration: TextDecoration.underline,
+                    child: Container(
+                      child: Image.asset(
+                        'assets/logo.png',
+                        width: 150,
+                        height: 150,
+                      ),
                     ),
                   ),
-                  onPressed: () {},
-                ),
-              ],
+                  SizedBox(height: 20),
+                  TextFormField(
+                    decoration: InputDecoration(
+                      labelText: 'Kullanıcı Adı',
+                    ),
+                    validator: (value) {
+                      if (value?.isEmpty ?? true) {
+                        return 'Lütfen kullanıcı adınızı girin';
+                      }
+                      return null;
+                    },
+                    onSaved: (value) {
+                      _username = value ?? '';
+                    },
+                  ),
+                  SizedBox(height: 10),
+                  TextFormField(
+                    decoration: InputDecoration(
+                      labelText: 'Şifre',
+                    ),
+                    obscureText: true,
+                    validator: (value) {
+                      if (value?.isEmpty ?? true) {
+                        return 'Lütfen şifrenizi girin';
+                      }
+                      return null;
+                    },
+                    onSaved: (value) {
+                      _password = value ?? '';
+                    },
+                  ),
+                  ElevatedButton(
+                    child: SizedBox(
+                      width: double.infinity,
+                      child: Text(
+                        'Giriş Yap',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 20.0, color: Colors.white),
+                      ),
+                    ),
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        _formKey.currentState!.save();
+                        if (_username == 'a' && _password == 'a') {
+                          _navigatePanel(context);
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text('Kullanıcı adı veya şifre hatalı'),
+                            ),
+                          );
+                        }
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.red,
+                    ),
+                  ),
+                  SizedBox(height: 8.0),
+                  TextButton(
+                    child: Text(
+                      'Şifrenizi mi unuttunuz?',
+                      style: TextStyle(
+                        decoration: TextDecoration.underline,
+                      ),
+                    ),
+                    onPressed: () {},
+                  ),
+                ],
+              ),
             ),
           ),
         ),
       ),
     );
-  }
-}
+  }}
 
 void _navigatePanel(BuildContext context) {
   Navigator.of(context).push(MaterialPageRoute(
