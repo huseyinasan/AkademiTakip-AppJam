@@ -44,7 +44,15 @@ Flutter 34
 ---
 
 
-- **Ürün Durumu**: Ekran görüntüleri: SONRA DOLDURULACAK
-  ![Screenshot 1](https://github.com/OyunveUygulamaAkademisi/BootcampScrumTemplate/blob/main/ProjectManagement/Sprint1Documents/productss1.png?raw=true)
-  ![Screenshot 2](https://github.com/OyunveUygulamaAkademisi/BootcampScrumTemplate/blob/main/ProjectManagement/Sprint1Documents/productss2.png?raw=true)
+- **Ürün Durumu**: Ekran görüntüleri:
+  ![Screenshot 1](https://github.com/huseyinasan/appjam/blob/master/assets/demo/ss1.png | width=100)
+  ![Screenshot 2](https://github.com/huseyinasan/appjam/blob/master/assets/demo/ss2.png | width=100)
+  ![Screenshot 3](https://github.com/huseyinasan/appjam/blob/master/assets/demo/ss3.png | width=100)
+  ![Screenshot 4](https://github.com/huseyinasan/appjam/blob/master/assets/demo/ss4.png | width=100)
+  ![Screenshot 5](https://github.com/huseyinasan/appjam/blob/master/assets/demo/ss5.png | width=100)
+  ![Screenshot 6](https://github.com/huseyinasan/appjam/blob/master/assets/demo/ss6.png | width=100)
+  ![Screenshot 7](https://github.com/huseyinasan/appjam/blob/master/assets/demo/ss7.png | width=100)
+  ![Screenshot 8](https://github.com/huseyinasan/appjam/blob/master/assets/demo/ss8.png | width=100)
+  ![Screenshot 9](https://github.com/huseyinasan/appjam/blob/master/assets/demo/ss9.png | width=100)
+
 
