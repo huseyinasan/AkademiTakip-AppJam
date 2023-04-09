@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
-
 class ProfilePage extends StatelessWidget {
+  const ProfilePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Profil'),
+        title: const Text('Profil'),
         actions: [
           IconButton(
-            icon: Icon(Icons.logout),
+            icon: const Icon(Icons.logout),
             onPressed: () {
               Navigator.popUntil(context, ModalRoute.withName('/'));
             },
@@ -19,20 +20,20 @@ class ProfilePage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          SizedBox(height: 20),
-          CircleAvatar(
+          const SizedBox(height: 20),
+          const CircleAvatar(
             radius: 50,
             child: Icon(Icons.person),
           ),
-          SizedBox(height: 10),
-          Text(
+          const SizedBox(height: 10),
+          const Text(
             'Kişi Adı',
-            style: TextStyle(fontSize: 28,fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            children: const [
               Text(
                 '🔥', // Replace with your desired emoji
                 style: TextStyle(fontSize: 24),
@@ -45,20 +46,20 @@ class ProfilePage extends StatelessWidget {
             ],
           ),
           Container(
-            margin: EdgeInsets.only(top: 20),
+            margin: const EdgeInsets.only(top: 20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Stack(
                   children: [
-                    new LinearPercentIndicator(
+                    LinearPercentIndicator(
                       width: 300.0,
                       lineHeight: 40.0,
                       percent: 0.23,
                       backgroundColor: Colors.grey[300],
                       progressColor: Colors.lightBlue,
                     ),
-                    Positioned.fill(
+                    const Positioned.fill(
                       child: Align(
                         alignment: Alignment.center,
                         child: Text(
@@ -72,11 +73,7 @@ class ProfilePage extends StatelessWidget {
               ],
             ),
           ),
-
-
-
-          SizedBox(height: 30),
-
+          const SizedBox(height: 30),
           Container(
             decoration: BoxDecoration(
               color: Colors.blue,
@@ -86,12 +83,12 @@ class ProfilePage extends StatelessWidget {
                   color: Colors.grey.withOpacity(0.5),
                   spreadRadius: 3,
                   blurRadius: 5,
-                  offset: Offset(0, 3),
+                  offset: const Offset(0, 3),
                 ),
               ],
             ),
             child: Padding(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: Text(
                 'Şu an ödevlerinin %23\'ünü tamamladın',
                 style: TextStyle(
@@ -102,51 +99,43 @@ class ProfilePage extends StatelessWidget {
                     Shadow(
                       color: Colors.grey.withOpacity(0.5),
                       blurRadius: 3,
-                      offset: Offset(0, 3),
+                      offset: const Offset(0, 3),
                     ),
                   ],
                 ),
               ),
             ),
           ),
-
-
-          SizedBox(height: 20),
-          Text(
+          const SizedBox(height: 20),
+          const Text(
             'Akademi Sıralaman 174/750',
-            style: TextStyle(fontSize: 18,
-            color: Colors.lightBlue),
+            style: TextStyle(fontSize: 18, color: Colors.lightBlue),
           ),
         ],
       ),
-
-
-
-
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showDialog(
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
-                title: Text('Geri Bildirim'),
+                title: const Text('Geri Bildirim'),
                 content: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Expanded(
                       child: SingleChildScrollView(
-                        child: Container(
+                        child: SizedBox(
                           width: MediaQuery.of(context).size.width * 1,
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              TextField(
+                              const TextField(
                                 decoration: InputDecoration(
                                   hintText: "Ad Soyad",
                                 ),
                               ),
-
-                              SizedBox(height: 20),
+                              const SizedBox(height: 20),
                               DropdownButtonFormField<String>(
                                 decoration: InputDecoration(
                                   hintText: "Tür",
@@ -154,7 +143,7 @@ class ProfilePage extends StatelessWidget {
                                   fillColor: Colors.grey.shade200,
                                 ),
                                 value: 'istek',
-                                items: [
+                                items: const [
                                   DropdownMenuItem(
                                     value: 'istek',
                                     child: Text('İstek'),
@@ -170,21 +159,21 @@ class ProfilePage extends StatelessWidget {
                                 ],
                                 onChanged: (value) {},
                               ),
-                              SizedBox(height: 20),
-                              TextField(
+                              const SizedBox(height: 20),
+                              const TextField(
                                 decoration: InputDecoration(
                                   hintText: 'Konu',
                                 ),
                               ),
-                              SizedBox(height: 20),
-                              TextField(
+                              const SizedBox(height: 20),
+                              const TextField(
                                 maxLines: null,
                                 keyboardType: TextInputType.multiline,
                                 decoration: InputDecoration(
                                   hintText: "Geri bildiriminizi buraya yazın",
                                   alignLabelWithHint: true,
-                                  contentPadding:
-                                  EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                                  contentPadding: EdgeInsets.symmetric(
+                                      vertical: 20, horizontal: 20),
                                   border: OutlineInputBorder(),
                                 ),
                               ),
@@ -198,32 +187,22 @@ class ProfilePage extends StatelessWidget {
                 actions: [
                   ElevatedButton(
                     onPressed: () => Navigator.of(context).pop(),
-                    child: Text('İptal'),
+                    child: const Text('İptal'),
                   ),
                   ElevatedButton(
                     onPressed: () {
                       // Implement your feedback functionality here
                       Navigator.of(context).pop();
                     },
-                    child: Text('Gönder'),
+                    child: const Text('Gönder'),
                   ),
                 ],
               );
             },
           );
         },
-        child: Icon(Icons.feedback),
+        child: const Icon(Icons.feedback),
       ),
-
-
-
     );
-
-
-
-
-
-
   }
 }
-
