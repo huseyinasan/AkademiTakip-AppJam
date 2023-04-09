@@ -4,7 +4,7 @@ class Bildirim {
   static Future initialize(
       FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin) async {
     var androidInitialize =
-        new AndroidInitializationSettings("mipmap/akademi_logo");
+        new AndroidInitializationSettings("mipmap/launcher_icon");
     var iOSInitialize = new DarwinInitializationSettings();
     var initializationsSettings = new InitializationSettings(
         android: androidInitialize, iOS: iOSInitialize);

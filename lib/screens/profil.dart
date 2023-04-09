@@ -63,6 +63,15 @@ class _ProfilePageState extends State<ProfilePage> {
     }
   }
 
+  void showSnackBar(BuildContext context) {
+    final snackBar = SnackBar(
+      content: Text('Geribildiriminiz için çok teşekkürler🙌 '),
+      duration: Duration(seconds: 2),
+    );
+
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
   int kalanSure = 154;
   @override
   Widget build(BuildContext context) {
@@ -134,7 +143,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       LinearPercentIndicator(
                           width: 300.0,
                           lineHeight: 40.0,
-                          percent: 0.23,
+                          percent: 0.86,
                           backgroundColor: Colors.grey[300],
                           progressColor: Colors.lightBlue,
                           barRadius: const Radius.circular(20)),
@@ -142,7 +151,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         child: Align(
                           alignment: Alignment.center,
                           child: Text(
-                            ' %23',
+                            ' %86',
                             style: TextStyle(
                                 fontSize: 18, fontWeight: FontWeight.bold),
                           ),
@@ -170,7 +179,7 @@ class _ProfilePageState extends State<ProfilePage> {
               child: Padding(
                 padding: const EdgeInsets.all(10),
                 child: Text(
-                  'Şu an ödevlerinin %23\'ünü tamamladın',
+                  'Şu an ödevlerinin %83\'ünü tamamladın',
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -194,6 +203,9 @@ class _ProfilePageState extends State<ProfilePage> {
                 color: Colors.lightBlue,
                 fontWeight: FontWeight.bold,
               ),
+            ),
+            SizedBox(
+              height: 5,
             ),
             const SizedBox(
               height: 20,
@@ -333,7 +345,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               const SizedBox(height: 16),
                               TextFormField(
                                 decoration: const InputDecoration(
-                                  labelText: 'Şikayetiniz',
+                                  labelText: 'Mesajınız',
                                 ),
                                 maxLines: 4,
                                 validator: (value) {
@@ -346,30 +358,6 @@ class _ProfilePageState extends State<ProfilePage> {
                                   _feedback = value;
                                 },
                               ),
-                              const SizedBox(height: 16),
-                              ElevatedButton(
-                                onPressed: () {
-                                  if (_formKey.currentState!.validate()) {
-                                    _formKey.currentState!.save();
-                                    ScaffoldMessenger.of(context)
-                                        .showSnackBar(const SnackBar(
-                                      content: Text(
-                                          'Geri bildiriminiz başarıyla alınmıştır!'),
-                                      duration: Duration(seconds: 2),
-                                    ));
-                                    Future.delayed(const Duration(seconds: 2),
-                                        () {
-                                      setState(() {
-                                        _formKey.currentState!.reset();
-                                      });
-                                    });
-                                  }
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.red,
-                                ),
-                                child: const Text('Gönder'),
-                              ),
                             ],
                           ),
                         ),
@@ -381,12 +369,17 @@ class _ProfilePageState extends State<ProfilePage> {
                   ElevatedButton(
                     onPressed: () => Navigator.of(context).pop(),
                     child: const Text('İptal'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.red,
+                    ),
                   ),
                   ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
                       Navigator.of(context).pop();
+                      await Future.delayed(const Duration(milliseconds: 300));
+                      showSnackBar(context);
                     },
-                    child: const Text('Gönder'),
+                    child: Text('Gönder'),
                   ),
                 ],
               );

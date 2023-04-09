@@ -10,7 +10,7 @@ class AnaPanel extends StatefulWidget {
 
 //
 class _AnaPanelState extends State<AnaPanel> {
-  bool showMonthlyProgress = true;
+  bool showMonthlyProgress = false;
   void onProgressBarPressed(String label) {}
 
   final List<Map<String, dynamic>> totalProgressData = [
@@ -337,7 +337,7 @@ class _CustomProgressBarState extends State<CustomProgressBar> {
                         fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    'Akademi Ortalaması: ${(widget.value * 81).toInt()}%',
+                    'Akademi Ort.: ${(widget.value * 81).toInt()}%',
                     style: const TextStyle(
                         fontSize: 16, fontWeight: FontWeight.bold),
                   ),
