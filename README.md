@@ -17,7 +17,7 @@ Flutter 34
 
 ## Ürün Açıklaması
 
-- SONRA DOLDURULACAK.
+- Uygulamamız, akademide ki bursiyerlerin yaşadığı görev takibi problemi için çeşitli takip arayüzleri ile anlık erişim sağlarken ve bildirimlerle uyarırken, oyunlaştırmalarla motivasyon eksikliğini azaltmaya amaçlıyor.
 
 ## Ürün Özellikleri
 
@@ -34,8 +34,8 @@ Flutter 34
 
 ## Demo Kullanıcı Bilgileri
 
--mail: fatma.s@gmail.com
--şifre: fatma.s123
+- mail: fatma.s@gmail.com
+- şifre: fatma.s123
 
 ## Minimum Uygulanabilir Ürün(MVP)
 
