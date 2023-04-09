@@ -149,7 +149,6 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
   Widget build(BuildContext context) {
     int cemreIndex = users.indexWhere((user) => user.username == "Cemre İ.");
     GlobalKey cemreKey = GlobalKey();
-    ScrollController _scrollController = ScrollController();
 
     return Scaffold(
       appBar: AppBar(
@@ -195,11 +194,9 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
               const SizedBox(height: 16.0),
               Expanded(
                 child: ListView.builder(
-                  controller: _scrollController,
                   itemCount: users.length,
                   itemBuilder: (BuildContext context, int index) {
                     return Container(
-                      key: index == cemreIndex ? cemreKey : null,
                       margin: const EdgeInsets.symmetric(
                           vertical: 8, horizontal: 16),
                       child: Material(

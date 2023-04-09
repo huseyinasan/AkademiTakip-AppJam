@@ -289,7 +289,6 @@ class _CustomProgressBarState extends State<CustomProgressBar> {
         borderRadius: BorderRadius.circular(16),
         color: Colors.white,
         elevation: 5,
-        shadowColor: Colors.transparent,
         child: ExpansionTile(
           title: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
