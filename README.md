@@ -34,8 +34,8 @@ Flutter 34
 
 ## Demo Kullanıcı Bilgileri
 
--mail: fatma.s@gmail.com
--şifre: fatma.s123
+- mail: fatma.s@gmail.com
+- şifre: fatma.s123
 
 ## Minimum Uygulanabilir Ürün(MVP)
 
