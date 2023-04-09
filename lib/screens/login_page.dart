@@ -172,18 +172,10 @@ class _LoginPageState extends State<LoginPage> {
                     },
                   ),
                   ElevatedButton(
-                    child: const SizedBox(
-                      width: double.infinity,
-                      child: Text(
-                        'Giriş Yap',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 20.0, color: Colors.white),
-                      ),
-                    ),
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         _formKey.currentState!.save();
-                        if (_username == 'a' && _password == 'a') {
+                        if (_username == 'fatma.s' && _password == 'fatma.s') {
                           _navigatePanel(context);
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
@@ -196,6 +188,14 @@ class _LoginPageState extends State<LoginPage> {
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.red,
+                    ),
+                    child: const SizedBox(
+                      width: double.infinity,
+                      child: Text(
+                        'Giriş Yap',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 20.0, color: Colors.white),
+                      ),
                     ),
                   ),
                   const SizedBox(height: 8.0),

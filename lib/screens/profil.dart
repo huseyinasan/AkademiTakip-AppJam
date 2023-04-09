@@ -20,7 +20,7 @@ class _ProfilePageState extends State<ProfilePage> {
     Bildirim.initialize(flutterLocalNotificationsPlugin);
   }
 
-  TimeOfDay _time = TimeOfDay(hour: 7, minute: 15);
+  TimeOfDay _time = const TimeOfDay(hour: 7, minute: 15);
   bool _notificationsEnabled = false;
 
   void _selectTime() async {
@@ -40,7 +40,7 @@ class _ProfilePageState extends State<ProfilePage> {
       _notificationsEnabled = value;
     });
     if (_notificationsEnabled) {
-      showNotificationAfterDelay(Duration(seconds: 7));
+      showNotificationAfterDelay(const Duration(seconds: 7));
     } else {
       await flutterLocalNotificationsPlugin.cancelAll();
     }
@@ -59,8 +59,8 @@ class _ProfilePageState extends State<ProfilePage> {
     }
   }
 
-  @override
   int kalanSure = 154;
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -68,7 +68,7 @@ class _ProfilePageState extends State<ProfilePage> {
         actions: [
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            children: const [
               Text("Çıkış Yap"),
             ],
           ),
@@ -79,7 +79,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   context, '/login', (route) => false);
             },
           ),
-          SizedBox(
+          const SizedBox(
             width: 10,
           )
         ],
@@ -110,10 +110,12 @@ class _ProfilePageState extends State<ProfilePage> {
                 '🔥',
                 style: TextStyle(fontSize: 24),
               ),
-              SizedBox(width: 5),
               Text(
-                '5',
-                style: TextStyle(fontSize: 18),
+                'x5',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ],
           ),
@@ -188,10 +190,10 @@ class _ProfilePageState extends State<ProfilePage> {
               fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
-          Divider(
+          const Divider(
             height: 5,
             color: Colors.grey,
           ),
@@ -211,26 +213,27 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                 ),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: _selectTime,
-                child: const Text(
-                  'Zaman Seç',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
                 style: ElevatedButton.styleFrom(
                   foregroundColor: Colors.white,
                   backgroundColor: Colors.blue,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30),
                   ),
-                  padding: EdgeInsets.symmetric(horizontal: 48, vertical: 12),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 48, vertical: 12),
+                ),
+                child: const Text(
+                  'Zaman Seç',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
               ),
               const SizedBox(height: 16),
               Text(
                 'Bildirim Saati: ${_time.format(context)}',
-                style: TextStyle(
+                style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                     color: Colors.blue),
@@ -330,8 +333,4 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
     );
   }
-}
-
-void _navigateLogin(BuildContext context) {
-  Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
 }
