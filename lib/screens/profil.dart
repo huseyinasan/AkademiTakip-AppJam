@@ -45,127 +45,111 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Profil'),
+        title: Text('Profil'),
         actions: [
           IconButton(
-            icon: const Icon(Icons.logout),
+            icon: Icon(Icons.exit_to_app), // Icon değiştirildi
             onPressed: () {
-              _navigateLogin(context);
+              Navigator.pushNamedAndRemoveUntil(
+                  context, '/login', (route) => false);
             },
           )
         ],
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const SizedBox(height: 20),
-            const CircleAvatar(
-              radius: 50,
-              child: Icon(Icons.person),
-            ),
-            const SizedBox(height: 10),
-            const Text(
-              'Kişi Adı',
-              style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 10),
-            Row(
+      body: Column(
+        children: [
+          const SizedBox(height: 20),
+          const CircleAvatar(
+            radius: 50,
+            child: Icon(Icons.person),
+          ),
+          const SizedBox(height: 10),
+          const Text(
+            'Kişi Adı',
+            style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Text(
+                '🔥', // Replace with your desired emoji
+                style: TextStyle(fontSize: 24),
+              ),
+              SizedBox(width: 5),
+              Text(
+                '7',
+                style: TextStyle(fontSize: 18),
+              ),
+            ],
+          ),
+          Container(
+            margin: const EdgeInsets.only(top: 20),
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Text(
-                  '🔥',
-                  style: TextStyle(fontSize: 24),
-                ),
-                SizedBox(width: 5),
-                Text(
-                  '7',
-                  style: TextStyle(fontSize: 18),
+              children: [
+                Stack(
+                  children: [
+                    LinearPercentIndicator(
+                      width: 300.0,
+                      lineHeight: 40.0,
+                      percent: 0.23,
+                      backgroundColor: Colors.grey[300],
+                      progressColor: Colors.lightBlue,
+                    ),
+                    const Positioned.fill(
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          ' %23',
+                          style: TextStyle(fontSize: 18),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
-            Container(
-              margin: const EdgeInsets.only(top: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Stack(
-                    children: [
-                      LinearPercentIndicator(
-                        width: 300.0,
-                        lineHeight: 40.0,
-                        percent: 0.23,
-                        backgroundColor: Colors.grey[300],
-                        progressColor: Colors.lightBlue,
-                      ),
-                      const Positioned.fill(
-                        child: Align(
-                          alignment: Alignment.center,
-                          child: Text(
-                            ' %23',
-                            style: TextStyle(fontSize: 18),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+          ),
+          const SizedBox(height: 30),
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.blue,
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 3,
+                  blurRadius: 5,
+                  offset: const Offset(0, 3),
+                ),
+              ],
             ),
-            const SizedBox(height: 30),
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.blue,
-                borderRadius: BorderRadius.circular(10),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 3,
-                    blurRadius: 5,
-                    offset: const Offset(0, 3),
-                  ),
-                ],
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: Text(
-                  'Şu an ödevlerinin %23\'ünü tamamladın',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                    shadows: [
-                      Shadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        blurRadius: 3,
-                        offset: const Offset(0, 3),
-                      ),
-                    ],
-                  ),
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Text(
+                'Şu an ödevlerinin %23\'ünü tamamladın',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                  shadows: [
+                    Shadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      blurRadius: 3,
+                      offset: const Offset(0, 3),
+                    ),
+                  ],
                 ),
               ),
             ),
-            const SizedBox(height: 20),
-            const Text(
-              'Akademi Sıralaman 174/750',
-              style: TextStyle(fontSize: 18, color: Colors.lightBlue),
-            ),
-            ElevatedButton(
-              onPressed: _selectTime,
-              child: const Text('Zaman Seç'),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              'Seçilen Zaman: ${_time.format(context)}',
-            ),
-            ListTile(
-              title: const Text('Günlük Bildirimler'),
-              trailing: Switch(
-                value: _notificationsEnabled,
-                onChanged: _onNotificationsToggle,
-              ),
-            ),
-          ],
-        ),
+          ),
+          const SizedBox(height: 20),
+          const Text(
+            'Akademi Sıralaman 174/750',
+            style: TextStyle(fontSize: 18, color: Colors.lightBlue),
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {

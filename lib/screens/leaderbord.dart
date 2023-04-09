@@ -100,28 +100,31 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
     sortUsersByAylikPuan(users);
   }
 
-  User Ahmet = User("Ahmet A.", 10, 5, 7, 100, 50, 70, 150, 1000);
-  User Selami = User("Selami D.", 10, 5, 7, 100, 50, 70, 150, 1000);
-  User Huseyin = User("Hüseyin A.", 10, 5, 7, 100, 50, 70, 150, 1000);
 
-  User Renan = User("Renan D.", 10, 5, 7, 100, 50, 70, 150, 1000);
-  User Cemre = User("Cemre İ.", 10, 5, 7, 100, 50, 70, 150, 1000);
+  User Ahmet = User("Ahmet A.", 10, 5, 17, 100, 51, 240, 125, 1553);
+  User Selami = User("Selami D.", 16, 8, 5, 116, 60, 114, 89, 982);
+  User Huseyin = User("Hüseyin A.", 14, 6, 20, 114, 53, 280, 154, 1787);
 
-  User Mehmet = User("Pelin E.", 8, 3, 4, 80, 40, 60, 120, 800);
+  User Renan = User("Renan D.", 6, 2, 45, 96, 38, 250, 247, 1556);
 
-  User Ayse = User("Ayşe Z.", 12, 7, 10, 120, 60, 90, 180, 1200);
+  User Cemre = User("Cemre İ.", 20, 10, 4, 120, 74, 83, 100, 877);
 
-  User Fatma = User("Fatma Ş.", 6, 2, 2, 60, 30, 45, 90, 600);
+  User Pelin = User("Pelin E.", 8, 3, 4, 80, 40, 60, 125, 580);
 
-  User Ali = User("Ali A.", 15, 9, 12, 150, 75, 110, 225, 1500);
+  User Ayse = User("Ayşe Z.", 12, 7, 10, 120, 60, 90, 50, 1200);
 
-  User Veli = User("Veli R.", 4, 1, 1, 40, 20, 30, 60, 400);
+  User Fatma = User("Fatma Ş.", 6, 2, 2, 60, 30, 45, 32, 435);
 
-  User Mert = User("Mert H.", 20, 12, 15, 200, 100, 150, 300, 2000);
+  User Ali = User("Ali A.", 15, 9, 12, 150, 75, 110, 123, 1075);
+
+  User Veli = User("Veli R.", 4, 1, 1, 40, 20, 30, 19, 290);
+
+  User Mert = User("Mert H.", 20, 12, 15, 200, 100, 150, 159, 1450);
+
 
   late final List<User> users = [
     Ahmet,
-    Mehmet,
+    Pelin,
     Ayse,
     Fatma,
     Ali,
@@ -170,8 +173,8 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                     value: isAllTimeSelected,
                     onChanged: (value) {
                       value
-                          ? sortUsersByAylikPuan(users)
-                          : sortUsersByAlltimePuan(users);
+                          ? sortUsersByAlltimePuan(users)
+                          : sortUsersByAylikPuan(users);
                       setState(() {
                         isAllTimeSelected = value;
                       });
@@ -282,7 +285,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                                       Text(
                                         isAllTimeSelected
                                             ? '${users[index].alltimeSocial}'
-                                            : '${users[index].aylikStreak}',
+                                            : '${users[index].aylikSocial}',
                                       ),
                                       const Text('Topluluk Etkileşimi'),
                                     ],

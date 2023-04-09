@@ -1,5 +1,3 @@
-import 'package:appjam/screens/leaderbord.dart';
-import 'package:appjam/screens/profil.dart';
 import 'package:flutter/material.dart';
 
 class AnaPanel extends StatefulWidget {
@@ -122,7 +120,7 @@ class _AnaPanelState extends State<AnaPanel> {
               ),
               color: Colors.white,
               onPressed: () {
-                _navigateProfil(context);
+                _navigateProfile(context);
               },
             ),
           ),
@@ -211,7 +209,7 @@ class _AnaPanelState extends State<AnaPanel> {
                 padding: const EdgeInsets.all(14.0),
                 child: FloatingActionButton(
                   onPressed: () {
-                    _navigateLeaderbord(context);
+                    _navigateLeaderboard(context);
                   },
                   backgroundColor: Colors.blue,
                   child: const Icon(
@@ -228,20 +226,14 @@ class _AnaPanelState extends State<AnaPanel> {
   }
 }
 
-void _navigateProfil(BuildContext context) {
-  Navigator.of(context).push(MaterialPageRoute(
-    builder: (context) {
-      return ProfilePage();
-    },
-  ));
+
+void _navigateProfile(BuildContext context) {
+  Navigator.pushNamed(context, '/profil');
 }
 
-void _navigateLeaderbord(BuildContext context) {
-  Navigator.of(context).push(MaterialPageRoute(
-    builder: (context) {
-      return LeaderboardPage();
-    },
-  ));
+
+void _navigateLeaderboard(BuildContext context) {
+  Navigator.pushNamed(context, '/leaderboard');
 }
 
 class CustomProgressBar extends StatefulWidget {

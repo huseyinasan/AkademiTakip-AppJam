@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'ana_panel.dart';
+
 
 class MyApp extends StatelessWidget {
   @override
@@ -221,9 +221,6 @@ class _LoginPageState extends State<LoginPage> {
 }
 
 void _navigatePanel(BuildContext context) {
-  Navigator.of(context).pushReplacement(MaterialPageRoute(
-    builder: (context) {
-      return const AnaPanel();
-    },
-  ));
+  Navigator.of(context).pushReplacementNamed('/ana_panel');
 }
+//
