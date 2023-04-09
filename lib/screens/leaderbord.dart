@@ -100,7 +100,6 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
     sortUsersByAylikPuan(users);
   }
 
-
   User Ahmet = User("Ahmet A.", 10, 5, 17, 100, 51, 240, 125, 1553);
   User Selami = User("Selami D.", 16, 8, 5, 116, 60, 114, 89, 982);
   User Huseyin = User("Hüseyin A.", 14, 6, 20, 114, 53, 280, 154, 1787);
@@ -113,14 +112,13 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
 
   User Ayse = User("Ayşe Z.", 12, 7, 10, 120, 60, 90, 50, 1200);
 
-  User Fatma = User("Fatma Ş.", 6, 2, 2, 60, 30, 45, 32, 435);
+  User Fatma = User("Fatma Ş.", 6, 5, 5, 60, 30, 45, 32, 435);
 
   User Ali = User("Ali A.", 15, 9, 12, 150, 75, 110, 123, 1075);
 
   User Veli = User("Veli R.", 4, 1, 1, 40, 20, 30, 19, 290);
 
   User Mert = User("Mert H.", 20, 12, 15, 200, 100, 150, 159, 1450);
-
 
   late final List<User> users = [
     Ahmet,
@@ -319,10 +317,10 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                   CircleAvatar(
                     backgroundColor: Colors.white,
                     foregroundColor: Colors.blue,
-                    child: Text(Huseyin.username[0].toUpperCase()),
+                    child: Text(Fatma.username[0].toUpperCase()),
                   ),
                   Text(
-                    Huseyin.username,
+                    Fatma.username,
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
@@ -337,8 +335,8 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                       const SizedBox(width: 4.0),
                       Text(
                         isAllTimeSelected
-                            ? '${Huseyin.alltimePuan}'
-                            : '${Huseyin.aylikPuan}',
+                            ? '${Fatma.alltimePuan}'
+                            : '${Fatma.aylikPuan}',
                         style: const TextStyle(color: Colors.white),
                       ),
                     ],

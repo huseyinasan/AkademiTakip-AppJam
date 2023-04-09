@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-
-
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -69,9 +67,7 @@ class _AnimationPageState extends State<AnimationPage>
         });
       });
     } else {
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => const LoginPage()),
-      );
+      Navigator.pushReplacementNamed(context, '/login');
     }
   }
 
@@ -120,6 +116,8 @@ class _LoginPageState extends State<LoginPage> {
           'Oyun ve Uygulama Akademisi',
           style: TextStyle(color: Colors.black),
         ),
+        leading: const SizedBox(),
+        centerTitle: true,
       ),
       body: Center(
         child: SingleChildScrollView(
@@ -223,4 +221,3 @@ class _LoginPageState extends State<LoginPage> {
 void _navigatePanel(BuildContext context) {
   Navigator.of(context).pushReplacementNamed('/ana_panel');
 }
-//

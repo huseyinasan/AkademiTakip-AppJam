@@ -226,11 +226,9 @@ class _AnaPanelState extends State<AnaPanel> {
   }
 }
 
-
 void _navigateProfile(BuildContext context) {
   Navigator.pushNamed(context, '/profil');
 }
-
 
 void _navigateLeaderboard(BuildContext context) {
   Navigator.pushNamed(context, '/leaderboard');
@@ -287,86 +285,91 @@ class _CustomProgressBarState extends State<CustomProgressBar> {
           });
         }
       },
-      child: ExpansionTile(
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              widget.label,
-              style: const TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                decoration: TextDecoration.underline,
+      child: PhysicalModel(
+        borderRadius: BorderRadius.circular(16),
+        color: Colors.white,
+        elevation: 5,
+        shadowColor: Colors.transparent,
+        child: ExpansionTile(
+          title: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                widget.label,
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  decoration: TextDecoration.underline,
+                ),
               ),
-            ),
-            const SizedBox(height: 8),
-            LayoutBuilder(
-                builder: (BuildContext context, BoxConstraints constraints) {
-              return Stack(
+              const SizedBox(height: 8),
+              LayoutBuilder(
+                  builder: (BuildContext context, BoxConstraints constraints) {
+                return Stack(
+                  children: [
+                    Container(
+                      height: 16,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: Colors.grey.shade300,
+                      ),
+                      width: constraints.maxWidth,
+                    ),
+                    Container(
+                      height: 16,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: _isPressed
+                            ? widget.color.withOpacity(0.6)
+                            : widget.color,
+                      ),
+                      width: constraints.maxWidth * widget.value,
+                    ),
+                  ],
+                );
+              }),
+              const SizedBox(height: 8),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    height: 16,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: Colors.grey.shade300,
-                    ),
-                    width: constraints.maxWidth,
+                  Text(
+                    'İlerlemen: ${(widget.value * 100).toInt()}%',
+                    style: const TextStyle(
+                        fontSize: 16, fontWeight: FontWeight.bold),
                   ),
-                  Container(
-                    height: 16,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: _isPressed
-                          ? widget.color.withOpacity(0.6)
-                          : widget.color,
-                    ),
-                    width: constraints.maxWidth * widget.value,
+                  Text(
+                    'Akademi Ortalaması: ${(widget.value * 81).toInt()}%',
+                    style: const TextStyle(
+                        fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                 ],
-              );
-            }),
-            const SizedBox(height: 8),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'İlerlemen: ${(widget.value * 100).toInt()}%',
-                  style: const TextStyle(
-                      fontSize: 16, fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  'Akademi Ortalaması: ${(widget.value * 81).toInt()}%',
-                  style: const TextStyle(
-                      fontSize: 16, fontWeight: FontWeight.bold),
-                ),
-              ],
+              ),
+            ],
+          ),
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
+              child: Column(
+                children: [
+                  Text(
+                    'Modül İlerlemesi: ${widget.course}',
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    'Kalan Ders Süresi: ${widget.kalanSure} dakika',
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
-        children: [
-          // Add any content that you want to display when the widget is expanded
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
-            child: Column(
-              children: [
-                Text(
-                  'Modül İlerlemesi: ${widget.course}',
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Text(
-                  'Kalan Ders Süresi: ${widget.kalanSure} dakika',
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
       ),
     );
   }
