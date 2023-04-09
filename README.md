@@ -32,6 +32,11 @@ Flutter 34
 
 - Tüm akademi bursiyerleri
 
+## Demo Kullanıcı Bilgileri
+
+fatma.s@gmail.com
+fatma.s123
+
 ## Minimum Uygulanabilir Ürün(MVP)
 
 [Miro  Board](https://miro.com/app/board/uXjVMVPsx2o=/?share_link_id=556679816524)
