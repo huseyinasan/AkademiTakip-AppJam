@@ -65,7 +65,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   void showSnackBar(BuildContext context) {
     final snackBar = SnackBar(
-      content: Text('Geribildiriminiz için çok teşekkürler🙌 '),
+      content: Text('Geribildirimini aldık için çok teşekkürler🙌'),
       duration: Duration(seconds: 2),
     );
 
