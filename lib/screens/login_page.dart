@@ -34,8 +34,7 @@ class _AnimationPageState extends State<AnimationPage>
 
     _animationController = AnimationController(
       vsync: this,
-      duration:
-          const Duration(milliseconds: 120), // Set duration to 0.2 seconds
+      duration: const Duration(milliseconds: 120),
     );
 
     _animation =
@@ -98,8 +97,8 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
 
-  String _username = 'a';
-  String _password = 'a';
+  String _email = '';
+  String _password = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -143,16 +142,16 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(height: 20),
                   TextFormField(
                     decoration: const InputDecoration(
-                      labelText: 'Kullanıcı Adı',
+                      labelText: 'E-Mail Adresi',
                     ),
                     validator: (value) {
                       if (value?.isEmpty ?? true) {
-                        return 'Lütfen kullanıcı adınızı girin';
+                        return 'Lütfen mail adresinizi girin';
                       }
                       return null;
                     },
                     onSaved: (value) {
-                      _username = value ?? '';
+                      _email = value ?? '';
                     },
                   ),
                   const SizedBox(height: 10),
@@ -175,12 +174,12 @@ class _LoginPageState extends State<LoginPage> {
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         _formKey.currentState!.save();
-                        if (_username == 'fatma.s' && _password == 'fatma.s') {
+                        if (_email == 'fatma.s' && _password == 'fatma.s123') {
                           _navigatePanel(context);
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
-                              content: Text('Kullanıcı adı veya şifre hatalı'),
+                              content: Text('E-mail adresi veya şifre hatalı'),
                             ),
                           );
                         }
