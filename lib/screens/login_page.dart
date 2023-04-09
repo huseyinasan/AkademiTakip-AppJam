@@ -174,7 +174,8 @@ class _LoginPageState extends State<LoginPage> {
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         _formKey.currentState!.save();
-                        if (_email == 'fatma.s' && _password == 'fatma.s123') {
+                        if (_email == 'fatma.s@gmail.com' &&
+                            _password == 'fatma.s123') {
                           _navigatePanel(context);
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
