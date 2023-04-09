@@ -8,16 +8,17 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Profil'),
+        title: Text('Profil'),
         actions: [
           IconButton(
-            icon: const Icon(Icons.logout),
+            icon: Icon(Icons.exit_to_app), // Icon değiştirildi
             onPressed: () {
-              Navigator.popUntil(context, ModalRoute.withName('/'));
+              Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
             },
           )
         ],
       ),
+
       body: Column(
         children: [
           const SizedBox(height: 20),
