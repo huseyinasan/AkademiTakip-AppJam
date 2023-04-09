@@ -1,16 +1,45 @@
-# appjam
+# **Takım İsmi**
 
-A new Flutter project.
+Flutter 34
 
-## Getting Started
+# Ürün İle İlgili Bilgiler
 
-This project is a starting point for a Flutter application.
+## Takım Üyeleri
 
-A few resources to get you started if this is your first Flutter project:
+- Hüseyin Asan
+- Çağla Erkalkan
+- Kemal Erdem Yenin
+- Pelin Hancı
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Ürün İsmi
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+--Akademi Görev Takip--
+
+## Ürün Açıklaması
+
+- SONRA DOLDURULACAK.
+
+## Ürün Özellikleri
+
+- Aylık ve tüm zamanlar olarak eksik görevlerin durumunu gösterme
+- Aylık ve tüm zamanlar olarak liderlik tablosunu gösterme
+- Akademi ile daha hızlı iletişim sağlanabilmesi için geri bildirim yollama
+- Günlük olarak bildirim yollama
+- Günlük bildirimin saatini özelleştirme
+- Aylık olarak tüm görevlerin tamamlanma oranını profil sayfasında gösterme
+
+## Hedef Kitle
+
+- Tüm akademi bursiyerleri
+
+## Minimum Uygulanabilir Ürün(MVP)
+
+[Miro  Board](https://miro.com/app/board/uXjVMVPsx2o=/?share_link_id=556679816524)
+
+---
+
+
+- **Ürün Durumu**: Ekran görüntüleri: SONRA DOLDURULACAK
+  ![Screenshot 1](https://github.com/OyunveUygulamaAkademisi/BootcampScrumTemplate/blob/main/ProjectManagement/Sprint1Documents/productss1.png?raw=true)
+  ![Screenshot 2](https://github.com/OyunveUygulamaAkademisi/BootcampScrumTemplate/blob/main/ProjectManagement/Sprint1Documents/productss2.png?raw=true)
+
