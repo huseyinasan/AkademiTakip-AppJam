@@ -45,14 +45,14 @@ Flutter 34
 
 
 - **Ürün Durumu**: Ekran görüntüleri:
-  ![Screenshot 1](https://github.com/huseyinasan/appjam/blob/master/assets/demo/ss1.png?raw=true0)
-  ![Screenshot 2](https://github.com/huseyinasan/appjam/blob/master/assets/demo/ss2.png?raw=true)
-  ![Screenshot 3](https://github.com/huseyinasan/appjam/blob/master/assets/demo/ss3.png?raw=true)
-  ![Screenshot 4](https://github.com/huseyinasan/appjam/blob/master/assets/demo/ss4.png?raw=true)
-  ![Screenshot 5](https://github.com/huseyinasan/appjam/blob/master/assets/demo/ss5.png?raw=true)
-  ![Screenshot 6](https://github.com/huseyinasan/appjam/blob/master/assets/demo/ss6.png?raw=true)
-  ![Screenshot 7](https://github.com/huseyinasan/appjam/blob/master/assets/demo/ss7.png?raw=true)
-  ![Screenshot 8](https://github.com/huseyinasan/appjam/blob/master/assets/demo/ss8.png?raw=true)
-  ![Screenshot 9](https://github.com/huseyinasan/appjam/blob/master/assets/demo/ss9.png?raw=true)
+  <img src="https://github.com/huseyinasan/appjam/blob/master/assets/demo/ss1.png?raw=true" width="200">
+  <img src="https://github.com/huseyinasan/appjam/blob/master/assets/demo/ss2.png?raw=true" width="200">
+  <img src="https://github.com/huseyinasan/appjam/blob/master/assets/demo/ss3.png?raw=true" width="200">
+  <img src="https://github.com/huseyinasan/appjam/blob/master/assets/demo/ss4.png?raw=true" width="200">
+  <img src="https://github.com/huseyinasan/appjam/blob/master/assets/demo/ss5.png?raw=true" width="200">
+  <img src="https://github.com/huseyinasan/appjam/blob/master/assets/demo/ss6.png?raw=true" width="200">
+  <img src="https://github.com/huseyinasan/appjam/blob/master/assets/demo/ss7.png?raw=true" width="200">
+  <img src="https://github.com/huseyinasan/appjam/blob/master/assets/demo/ss8.png?raw=true" width="200">
+  <img src="https://github.com/huseyinasan/appjam/blob/master/assets/demo/ss9.png?raw=true" width="200">
 
 
